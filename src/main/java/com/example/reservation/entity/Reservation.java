@@ -1,10 +1,11 @@
-package com.example.entity;
+package com.example.reservation.entity;
 
-import com.example.type.PaymentStatus;
+import com.example.reservation.type.PaymentStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,31 +18,31 @@ public class Reservation {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "meeting_room_id", nullable = false, columnDefinition = "예약한 회의실")
+    @JoinColumn(name = "meeting_room_id", nullable = false)
     @NotNull
     private MeetingRoom meetingRoom;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, columnDefinition = "예약자")
+    @JoinColumn(name = "user_id", nullable = false)
     @NotNull
     private User user;
 
-    @Column(nullable = false, columnDefinition = "회의실 입실 시간")
+    @Column(nullable = false)
     @NotNull
     private LocalDateTime startTime;
 
-    @Column(nullable = false, columnDefinition = "회의실 퇴실 시간")
+    @Column(nullable = false)
     @NotNull
     private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "결제 상태")
+    @Column(nullable = false)
     @NotNull
     private PaymentStatus paymentStatus = PaymentStatus.PENDING;
 
-    @Column(nullable = false, columnDefinition = "총 결제 금액")
+    @Column(nullable = false, scale = 2, precision = 19)
     @NotNull
-    private int totalFee;
+    private BigDecimal totalFee;
 
     // 예약 취소 여부
     private boolean cancelled = false;

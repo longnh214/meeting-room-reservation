@@ -1,10 +1,12 @@
-package com.example.entity;
+package com.example.reservation.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Getter
@@ -16,12 +18,12 @@ public class MeetingRoom {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "회의실 이름")
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, columnDefinition = "회의실 수용 인원")
+    @Column(nullable = false)
     private int capacity;
 
-    @Column(nullable = false, columnDefinition = "회의실 시간 당 요금")
-    private int hourlyFee;
+    @Column(nullable = false, scale = 2, precision = 19)
+    private BigDecimal hourlyFee;
 }

@@ -1,5 +1,4 @@
-package com.example.entity;
-
+package com.example.reservation.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -16,11 +15,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "사용자 이름")
+    @Column(nullable = false)
     @NotNull
     private String name;
 
-    @Column(nullable = false, columnDefinition = "사용자 이메일")
+    @Column(nullable = false)
     @Email
     private String email;
 }

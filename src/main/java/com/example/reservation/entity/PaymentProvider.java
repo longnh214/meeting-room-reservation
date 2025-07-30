@@ -1,7 +1,7 @@
-package com.example.entity;
+package com.example.reservation.entity;
 
-import com.example.type.PaymentMeasurementType;
-import com.example.type.PaymentProviderType;
+import com.example.reservation.type.PaymentMeasurementType;
+import com.example.reservation.type.PaymentProviderType;
 import jakarta.persistence.*;
 import lombok.*;
 

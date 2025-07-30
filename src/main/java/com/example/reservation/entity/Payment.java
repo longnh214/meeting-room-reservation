@@ -1,10 +1,10 @@
-package com.example.entity;
+package com.example.reservation.entity;
 
-import com.example.type.PaymentProviderType;
-import com.example.type.PaymentStatus;
+import com.example.reservation.type.PaymentProviderType;
+import com.example.reservation.type.PaymentStatus;
 import jakarta.persistence.*;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,21 +13,21 @@ public class Payment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reservation_id", nullable = false, columnDefinition = "결제에 대한 예약")
+    @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 
-    @Column(nullable = false, columnDefinition = "결제 금액")
-    private BigInteger fee;
+    @Column(nullable = false, scale = 2, precision = 19)
+    private BigDecimal fee;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "결제사 타입")
+    @Column(nullable = false)
     private PaymentProviderType paymentProviderType;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "결제 상태")
+    @Column(nullable = false)
     private PaymentStatus paymentStatus;
 
-    @Column(name = "external_payment_id", columnDefinition = "외부 결제 id")
+    @Column(name = "external_payment_id")
     private String externalPaymentId;
 
     @Column(name = "requested_at")

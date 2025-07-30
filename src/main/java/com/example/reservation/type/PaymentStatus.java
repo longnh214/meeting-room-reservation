@@ -1,6 +1,7 @@
-package com.example.type;
+package com.example.reservation.type;
 
 import lombok.Getter;
+
 import java.util.Arrays;
 
 @Getter
