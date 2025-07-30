@@ -197,4 +197,5 @@ dependency-reduced-pom.xml
 .gradle
 README.html
 .exercism
-**/application.yml
+application.yml
+application-*.yml
