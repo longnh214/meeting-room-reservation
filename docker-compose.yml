@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: meetingroom
       TZ: Asia/Seoul
     ports:
-      - "3306:3306"
+      - "3305:3306"
     volumes:
       - db:/var/lib/mysql
 
@@ -21,7 +21,8 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/meetingroom
+      TZ: "Asia/Seoul"
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/meetingroom?serverTimezone=UTC&characterEncoding=UTF-8
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
