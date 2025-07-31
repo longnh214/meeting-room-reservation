@@ -1,9 +1,6 @@
 package com.example.reservation.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -15,7 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class MeetingRoom {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -26,4 +23,7 @@ public class MeetingRoom {
 
     @Column(nullable = false, scale = 2, precision = 19)
     private BigDecimal hourlyFee;
+
+    @Column(nullable = false)
+    private boolean active;
 }
