@@ -1,17 +1,17 @@
 package com.example.reservation.annotation;
 
-import com.example.reservation.validator.ValidReservationTimeValidator;
+import com.example.reservation.validator.AfterCurrentTimeValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = ValidReservationTimeValidator.class)
+@Constraint(validatedBy = AfterCurrentTimeValidator.class)
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ValidReservationTime {
-    String message() default "시작 시간은 종료 시간보다 이전이어야 합니다.";
+public @interface AfterCurrentTime {
+    String message() default "이미 지난 예약에 대해서는 변경할 수 없습니다.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
