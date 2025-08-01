@@ -1,7 +1,10 @@
 package com.example.reservation.dto;
 
 import com.example.reservation.entity.MeetingRoom;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
