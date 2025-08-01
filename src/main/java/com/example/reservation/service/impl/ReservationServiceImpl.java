@@ -83,7 +83,7 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = reservationRepository.findById(request.getReservationId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 예약이 존재하지 않습니다."));
 
-        if(reservation.getStartTime().isAfter(LocalDateTime.now())){
+        if(reservation.getStartTime().isBefore(LocalDateTime.now())){
             throw new IllegalStateException("이미 지난 예약에 대해서는 취소할 수 없습니다.");
         }
 
