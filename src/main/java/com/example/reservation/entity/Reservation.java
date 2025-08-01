@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Entity
@@ -45,6 +46,24 @@ public class Reservation {
     @NotNull
     private BigDecimal totalFee;
 
-    // 예약 취소 여부
     private boolean cancelled = false;
+
+    public void changeTime(LocalDateTime newStart, LocalDateTime newEnd) {
+        this.startTime = newStart.withSecond(0);
+        this.endTime = newEnd.minusMinutes(1L).withSecond(59);
+        this.totalFee = calculateTotalFee(newStart, newEnd);
+    }
+
+    private BigDecimal calculateTotalFee(LocalDateTime startTime, LocalDateTime endTime) {
+        long minutes = Duration.between(startTime, endTime).toMinutes();
+        return meetingRoom.getHourlyFee().multiply(BigDecimal.valueOf(minutes).divide(BigDecimal.valueOf(60)));
+    }
+
+    public void changePaymentStatus(PaymentStatus status) {
+        this.paymentStatus = status;
+    }
+
+    public void cancel() {
+        this.cancelled = true;
+    }
 }

@@ -1,13 +1,13 @@
-package com.example.service;
+package com.example.reservation.service;
 
-import com.example.entity.Reservation;
+import com.example.reservation.dto.ReservationDto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationService {
-    Reservation createReservation(Long userId, Long meetingRoomId, LocalDateTime startTime, LocalDateTime endTime);
-    Reservation getReservation(Long reservationId);
-    List<Reservation> getUserReservations(Long userId);
-    void cancelReservation(Long reservationId);
+    ReservationDto.Response create(ReservationDto.CreateRequest request);
+    ReservationDto.Response cancel(ReservationDto.CancelRequest request);
+    List<ReservationDto.Response> findAll();
+    ReservationDto.Response update(ReservationDto.UpdateRequest request);
+    ReservationDto.Response findById(Long id);
 }
