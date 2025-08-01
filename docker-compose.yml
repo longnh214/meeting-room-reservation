@@ -10,6 +10,12 @@ services:
       - "3305:3306"
     volumes:
       - db:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   app:
     build:
@@ -22,7 +28,8 @@ services:
       - db
     environment:
       TZ: "Asia/Seoul"
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/meetingroom?serverTimezone=UTC&characterEncoding=UTF-8
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/meetingroom?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      SPRING_DATASOURCE_URL_TEST: jdbc:mysql://db:3306/test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
