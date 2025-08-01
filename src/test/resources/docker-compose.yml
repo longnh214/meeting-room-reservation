@@ -6,5 +6,5 @@ services:
     ports:
       - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: meetingroom
