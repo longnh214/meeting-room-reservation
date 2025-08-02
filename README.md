@@ -25,6 +25,8 @@ API 문서화: Swagger (OpenAPI 3.0) - springdoc-openapi
 ### application.yml 내용
 
 ```yaml
+# 💡 개발 단계라고 가정한 설정입니다. 
+
 server:
   servlet:
     context-path: /
@@ -40,7 +42,7 @@ spring:
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
