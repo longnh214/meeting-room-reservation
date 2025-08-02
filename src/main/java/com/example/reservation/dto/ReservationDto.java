@@ -5,6 +5,7 @@ import com.example.reservation.annotation.ValidReservationTime;
 import com.example.reservation.annotation.AfterCurrentTime;
 import com.example.reservation.entity.Reservation;
 import com.example.reservation.type.PaymentStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
@@ -19,15 +20,34 @@ public class ReservationDto {
     @Getter
     @Builder
     public static class Response {
+        @Schema(name = "예약 id")
         private Long id;
+
+        @Schema(name = "회의실 id")
         private Long meetingRoomId;
+
+        @Schema(name = "회의실 이름")
         private String meetingRoomName;
+
+        @Schema(name = "사용자 id")
         private Long userId;
+
+        @Schema(name = "사용자 이름")
         private String userName;
+
+        @Schema(name = "예약 시작 시간")
         private LocalDateTime startTime;
+
+        @Schema(name = "예약 마감 시간")
         private LocalDateTime endTime;
+
+        @Schema(name = "결제 상태")
         private PaymentStatus paymentStatus;
+
+        @Schema(name = "총 결제 요금")
         private BigDecimal totalFee;
+
+        @Schema(name = "예약 취소 여부")
         private boolean cancelled;
     }
 
@@ -39,16 +59,19 @@ public class ReservationDto {
         private Long meetingRoomId;
 
         @NotNull
+        @Schema(name = "사용자 이름")
         private Long userId;
 
         @NotNull
         @Future
         @HalfHour
+        @Schema(name = "예약 시작 시간")
         private LocalDateTime startTime;
 
         @NotNull
         @Future
         @HalfHour
+        @Schema(name = "예약 마감 시간")
         private LocalDateTime endTime;
     }
 
@@ -67,11 +90,13 @@ public class ReservationDto {
         @NotNull
         @Future
         @HalfHour
+        @Schema(name = "예약 시작 시간")
         private LocalDateTime newStartTime;
 
         @NotNull
         @Future
         @HalfHour
+        @Schema(name = "예약 마감 시간")
         private LocalDateTime newEndTime;
     }
 
