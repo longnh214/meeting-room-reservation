@@ -11,6 +11,71 @@ API 문서화: Swagger (OpenAPI 3.0) - springdoc-openapi
 테스트: JUnit 5 (단위/통합 테스트)  
 빌드: Gradle
 
+## 실행 전 application.yml 설정
+
+### 경로
+
+```text
+└── src
+    └── main
+        └── resources
+            └── application.yml
+```
+
+### application.yml 내용
+
+```yaml
+server:
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: meeting-room-reservation
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  sql:
+    init:
+      mode: always
+  docker:
+    compose:
+      enabled: false
+      skip:
+        in-tests: false
+
+logging.level:
+  org.hibernate.SQL: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /docs
+    enabled: true
+```
+
 ## docker-compose up 실행 방법
 
 ```shell
