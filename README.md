@@ -104,3 +104,4 @@ http://localhost:8080/docs
     - 비관적 락
 - 테스트 코드 환경
     - 실제와 동일한 환경에서 테스트 하고자 `TestContainer` 이용
+- 비용(fee) 관리 객체 `BigDecimal` 클래스 사용
