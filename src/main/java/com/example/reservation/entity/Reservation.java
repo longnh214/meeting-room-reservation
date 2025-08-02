@@ -14,6 +14,15 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Table(
+        name = "reservation",
+        indexes = {
+                @Index(
+                        name = "idx_room_time",
+                        columnList = "meeting_room_id, start_time, end_time"
+                )
+        }
+)
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
