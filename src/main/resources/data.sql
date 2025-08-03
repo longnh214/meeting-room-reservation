@@ -8,3 +8,6 @@ INSERT INTO meetingroom.user (id, email, name) VALUES (1, 'A@gmail.com', 'A');
 INSERT INTO meetingroom.user (id, email, name) VALUES (2, 'B@daum.net', 'B');
 INSERT INTO meetingroom.user (id, email, name) VALUES (3, 'C@naver.com', 'C');
 
+INSERT INTO meetingroom.payment_provider (id, api_endpoint, api_key, payment_provider_type) VALUES (1, '/api/v1/A', '3f12c4c7-1d53-4c26-b7c7-5f8b02317a59', 'A');
+INSERT INTO meetingroom.payment_provider (id, api_endpoint, api_key, payment_provider_type) VALUES (2, '/api/v1/B', '8a02bb8e-d01c-45e3-9de7-f3b2b70abdc2', 'B');
+INSERT INTO meetingroom.payment_provider (id, api_endpoint, api_key, payment_provider_type) VALUES (3, '/api/v2/C', '29fbe9b6-3017-4960-a7bb-3f9f3e4961ad', 'C');

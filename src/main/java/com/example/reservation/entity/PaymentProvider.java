@@ -17,15 +17,11 @@ public class PaymentProvider {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PaymentProviderType providerType; // A, B, C회사
+    private PaymentProviderType paymentProviderType; // A, B, C회사
 
     @Column(nullable = false)
     private String apiEndpoint;
 
     @Column(nullable = false)
     private String apiKey; // 인증 정보
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private PaymentMeasurementType measurementType; // CARD, SIMPLE, VIRTUAL_ACCOUNT
 }

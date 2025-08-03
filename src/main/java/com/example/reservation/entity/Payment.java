@@ -1,5 +1,6 @@
 package com.example.reservation.entity;
 
+import com.example.reservation.type.PaymentMeasurementType;
 import com.example.reservation.type.PaymentProviderType;
 import com.example.reservation.type.PaymentStatus;
 import jakarta.persistence.*;
@@ -17,16 +18,20 @@ public class Payment {
     @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_provider_id", nullable = false)
+    private PaymentProvider paymentProvider;
+
     @Column(nullable = false, scale = 2, precision = 19)
     private BigDecimal fee;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PaymentProviderType paymentProviderType;
+    private PaymentStatus paymentStatus;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PaymentStatus paymentStatus;
+    private PaymentMeasurementType measurementType;
 
     @Column(name = "external_payment_id")
     private String externalPaymentId;
