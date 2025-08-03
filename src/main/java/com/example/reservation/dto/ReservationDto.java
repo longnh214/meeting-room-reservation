@@ -1,8 +1,8 @@
 package com.example.reservation.dto;
 
+import com.example.reservation.annotation.AfterCurrentTime;
 import com.example.reservation.annotation.HalfHour;
 import com.example.reservation.annotation.ValidReservationTime;
-import com.example.reservation.annotation.AfterCurrentTime;
 import com.example.reservation.entity.Reservation;
 import com.example.reservation.type.PaymentStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
