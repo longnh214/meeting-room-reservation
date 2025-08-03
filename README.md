@@ -107,3 +107,25 @@ http://localhost:8080/docs
 - 테스트 코드 환경
     - 실제와 동일한 환경에서 테스트 하고자 `TestContainer` 이용
 - 비용(fee) 관리 객체 `BigDecimal` 클래스 사용
+- 예약 - 결제 프로세스
+  ```shell
+  Frontend         Server                 PG Server
+   |                |                       |
+   | POST /reservations/{id}/payment        |
+   |-------------------------------------->|
+   |                | create Payment(PENDING)
+   |                | call PG API           |
+   |                |--------------------->|
+   |                |<---------------------|
+   |<---------------| return paymentId, redirectUrl
+   | open PG page or SDK                    |
+   |-------------------------------------->|
+   |                |                       |
+   |                |<-- POST /webhooks/payments/{provider}
+   |                | update Payment+Reservation status
+   |                |----------------------> 200 OK
+   |                                           
+   | GET /payments/{paymentId}/status        |
+   |-------------------------------------->|
+   |<---------------| return SUCCESS/FAILED/REFUNDED
+  ```
