@@ -6,7 +6,9 @@ import java.util.Arrays;
 
 @Getter
 public enum PaymentProviderType {
-    A("A", "A Company");
+    A("A", "A 회사"),
+    B("B", "B 회사"),
+    C("C", "C 회사");
 
     private final String code;
     private final String description;
@@ -20,6 +22,6 @@ public enum PaymentProviderType {
         return Arrays.stream(PaymentProviderType.values())
                 .filter(s -> s.code.equals(code))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown PaymentProviderType code: " + code));
+                .orElseThrow(() -> new IllegalArgumentException("알 수 없는 결제 제공사 코드입니다. : " + code));
     }
 }

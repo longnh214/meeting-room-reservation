@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 @Getter
 public enum PaymentMeasurementType {
-    CARD("creditCard", "카드결제"),
-    SIMPLE("checkCard", "단순결제"),
+    CARD("cardPayment", "카드결제"),
+    SIMPLE("simplePayment", "단순결제"),
     VIRTUAL_ACCOUNT("virtualAccount", "가상계좌"),
     ;
 
@@ -23,6 +23,6 @@ public enum PaymentMeasurementType {
         return Arrays.stream(PaymentMeasurementType.values())
                 .filter(s -> s.code.equals(code))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown PaymentMeasurementType code: " + code));
+                .orElseThrow(() -> new IllegalArgumentException("알 수 없는 결제 수단 코드입니다. : " + code));
     }
 }
