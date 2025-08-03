@@ -10,7 +10,6 @@ services:
       - "3305:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./initdb:/docker-entrypoint-initdb.d
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot" ]
       interval: 5s
