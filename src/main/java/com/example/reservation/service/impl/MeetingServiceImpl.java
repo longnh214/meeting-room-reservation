@@ -16,6 +16,6 @@ public class MeetingServiceImpl implements MeetingRoomService {
     @Override
     @Transactional(readOnly = true)
     public List<MeetingRoomDto> getMeetingRooms() {
-        return MeetingRoomDto.fromList(meetingRoomRepository.findAllByActive(true));
+        return MeetingRoomDto.toDtoList(meetingRoomRepository.findAllByActive(true));
     }
 }

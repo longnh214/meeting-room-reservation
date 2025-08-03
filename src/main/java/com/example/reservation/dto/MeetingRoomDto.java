@@ -25,7 +25,7 @@ public class MeetingRoomDto {
     @Schema(name = "회의실 시간 당 요금", example = "8000.0")
     private BigDecimal hourlyFee;
 
-    public static MeetingRoomDto from(MeetingRoom meetingRoom) {
+    public static MeetingRoomDto toDto(MeetingRoom meetingRoom) {
         return MeetingRoomDto.builder()
                 .id(meetingRoom.getId())
                 .name(meetingRoom.getName())
@@ -34,8 +34,8 @@ public class MeetingRoomDto {
                 .build();
     }
 
-    public static List<MeetingRoomDto> fromList(List<MeetingRoom> meetingRooms) {
-        return meetingRooms.stream().map(MeetingRoomDto::from)
+    public static List<MeetingRoomDto> toDtoList(List<MeetingRoom> meetingRooms) {
+        return meetingRooms.stream().map(MeetingRoomDto::toDto)
                 .collect(Collectors.toList());
 
     }
