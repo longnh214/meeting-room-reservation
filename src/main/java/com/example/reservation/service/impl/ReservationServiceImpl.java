@@ -67,7 +67,7 @@ public class ReservationServiceImpl implements ReservationService {
                 request.getNewStartTime(),
                 request.getNewEndTime()
         );
-        overlapping.removeIf(r -> r.getId().equals(reservation.getId())); // 자기 자신은 제외
+        overlapping.removeIf(r -> r.getId().equals(reservation.getId()));
         if (!overlapping.isEmpty()) {
             throw new IllegalStateException("해당 시간대에 이미 예약이 존재합니다.");
         }
