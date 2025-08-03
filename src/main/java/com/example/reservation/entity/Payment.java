@@ -1,14 +1,18 @@
 package com.example.reservation.entity;
 
 import com.example.reservation.type.PaymentMeasurementType;
-import com.example.reservation.type.PaymentProviderType;
 import com.example.reservation.type.PaymentStatus;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
