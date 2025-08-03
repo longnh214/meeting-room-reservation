@@ -10,11 +10,10 @@ import com.example.reservation.repository.ReservationRepository;
 import com.example.reservation.repository.UserRepository;
 import com.example.reservation.service.ReservationService;
 import com.example.reservation.type.PaymentStatus;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
