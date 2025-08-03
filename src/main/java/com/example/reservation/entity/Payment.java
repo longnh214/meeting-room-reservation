@@ -37,6 +37,7 @@ public class Payment {
     @Column(nullable = false)
     private PaymentMeasurementType measurementType;
 
+    @Setter
     @Column(name = "external_payment_id")
     private String externalPaymentId;
 
@@ -45,4 +46,13 @@ public class Payment {
 
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
+
+    public void markSuccess() {
+        this.paymentStatus = PaymentStatus.SUCCESS;
+        this.completedAt = LocalDateTime.now();
+    }
+
+    public void markFailed() {
+        this.paymentStatus = PaymentStatus.FAILED;
+    }
 }

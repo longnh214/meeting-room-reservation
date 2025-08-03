@@ -1,9 +1,13 @@
-package com.example.service;
+package com.example.reservation.service;
 
-import com.example.entity.Payment;
+import com.example.reservation.dto.PaymentDto;
+import com.example.reservation.entity.Payment;
+import com.example.reservation.type.PaymentProviderType;
 
 public interface PaymentService {
-    Payment requestPayment(Long reservationId, Long providerId);
-    Payment getPaymentStatus(Long paymentId);
-    Payment handleWebhook(Long providerId, String payload);
+    Payment createPaymentPending(Long reservationId, PaymentProviderType paymentProviderType);
+    PaymentDto.Response requestPaymentExternalService(Long reservationId, PaymentProviderType paymentProviderType);
+    PaymentDto.Response getPaymentStatus(Long paymentId);
+    void updatePayment(Long paymentId, String externalPaymentId);
+    PaymentDto.Response handleWebhook(PaymentProviderType provider, PaymentDto.WebhookRequest webhookRequest);
 }

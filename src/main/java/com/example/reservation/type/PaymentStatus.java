@@ -7,11 +7,11 @@ import java.util.Arrays;
 @Getter
 public enum PaymentStatus{
 
-    PENDING("P", "결제 대기"),
-    SUCCESS("S", "결제 완료"),
-    FAILED("F", "결제 실패"),
-    CANCELLED("C", "결제 취소"),
-    REFUNDED("R", "환불 완료");
+    PENDING("PENDING", "결제 대기"),
+    SUCCESS("SUCCESS", "결제 완료"),
+    FAILED("FAILED", "결제 실패"),
+    CANCELLED("CANCELLED", "결제 취소"),
+    REFUNDED("REFUNDED", "환불 완료");
 
     private final String code;
     private final String description;

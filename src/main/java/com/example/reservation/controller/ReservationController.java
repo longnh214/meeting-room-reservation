@@ -1,6 +1,8 @@
 package com.example.reservation.controller;
 
+import com.example.reservation.dto.PaymentDto;
 import com.example.reservation.dto.ReservationDto;
+import com.example.reservation.service.PaymentService;
 import com.example.reservation.service.ReservationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
+    private final PaymentService paymentService;
 
     @GetMapping
     @Operation(summary = "회의실 예약 내역 전체 조회")
@@ -68,9 +71,18 @@ public class ReservationController {
     })
     public ResponseEntity<ReservationDto.Response> cancel(@PathVariable Long id) {
         return ResponseEntity.ok(reservationService.cancel(
-                    ReservationDto.CancelRequest
-                        .builder()
+                    ReservationDto.CancelRequest.builder()
                         .reservationId(id)
                         .build()));
+    }
+
+    @PostMapping("/{id}/payment")
+    @Operation(summary = "예약에 대한 결제 요청")
+    @ApiResponses({
+            @ApiResponse(responseCode = "202", description = "요청 전달 완료"),
+            @ApiResponse(responseCode = "400", description = "이미 지난 예약에 대한 요청 유효성 이슈"),
+    })
+    public ResponseEntity<PaymentDto.Response> paymentRequest(@PathVariable Long id, @RequestBody PaymentDto.Request request) {
+        return ResponseEntity.accepted().body(paymentService.requestPaymentExternalService(id, request.getPaymentProviderType()));
     }
 }
