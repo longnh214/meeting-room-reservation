@@ -86,6 +86,8 @@ public class PaymentServiceImpl implements PaymentService {
                 .orElseThrow(() -> new IllegalStateException("해당 결제 정보를 찾을 수 없습니다."));
 
         payment.setExternalPaymentId(externalPaymentId);
+
+        paymentRepository.save(payment);
     }
 
     @Override
