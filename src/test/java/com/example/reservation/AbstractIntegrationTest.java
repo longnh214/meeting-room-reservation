@@ -29,7 +29,7 @@ public abstract class AbstractIntegrationTest {
                     .withExposedService(
                             MYSQL_CONTAINER_NAME,
                             MYSQL_PORT,
-                            Wait.forListeningPort().withStartupTimeout(Duration.ofSeconds(30))
+                            Wait.forListeningPort().withStartupTimeout(Duration.ofSeconds(60))
                     );
 
     @DynamicPropertySource
