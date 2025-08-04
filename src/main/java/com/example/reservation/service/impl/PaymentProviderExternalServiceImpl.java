@@ -4,7 +4,6 @@ import com.example.reservation.dto.PaymentDto;
 import com.example.reservation.service.PaymentProviderExternalService;
 import com.example.reservation.type.PaymentStatus;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
