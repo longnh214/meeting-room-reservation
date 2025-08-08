@@ -13,6 +13,7 @@ import com.example.reservation.type.PaymentProviderType;
 import com.example.reservation.type.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,7 +57,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public PaymentDto.Response requestPaymentExternalService(Long reservationId, PaymentProviderType paymentProviderType) {
-        Payment payment = createPaymentPending(reservationId, paymentProviderType);
+        Payment payment = ((PaymentService) AopContext.currentProxy()).createPaymentPending(reservationId, paymentProviderType);
 
         CompletableFuture<PaymentDto.Response> pgFuture =
                 externalService.requestPaymentExternalApi(
@@ -72,7 +73,7 @@ public class PaymentServiceImpl implements PaymentService {
             if (throwable != null) {
                 log.error("PG 결제가 실패했습니다. : ", throwable);
             } else {
-                updatePayment(payment.getId(), pgResponse.getExternalPaymentId());
+                ((PaymentService) AopContext.currentProxy()).updatePayment(payment.getId(), pgResponse.getExternalPaymentId());
             }
         });
 
