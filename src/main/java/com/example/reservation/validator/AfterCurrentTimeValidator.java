@@ -16,7 +16,7 @@ public class AfterCurrentTimeValidator
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime start = getTime(value, "getStartTime", "getNewStartTime");
 
-            return start.isBefore(now);
+            return start.isAfter(now);
         } catch (Exception e) {
             return true;
         }
